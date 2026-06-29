@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>永沢製作所</title>
+    <style>
+        /* 全体のスタイル */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: #0a1128; /* 深いネイビー */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* 背景動画エリア（メインビジュアル） */
+        .hero-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* YouTube背景のダミー（実際はiframeなどを埋め込みます） */
+        .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: linear-gradient(rgba(10, 17, 40, 0.6), rgba(10, 17, 40, 0.8)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .gold-text {
+            color: #d4af37; /* 上品なゴールド */
+        }
+
+        p.lead {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        /* コンテンツセクション */
+        .section {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-left: 4px solid #d4af37;
+            padding-left: 15px;
+            margin-bottom: 40px;
+            color: #d4af37;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: #111a36;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 30px;
+            border-radius: 4px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #d4af37;
+        }
+
+        .card h3 {
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        /* フッター */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: #888888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- メインビジュアル（背景動画想定） -->
+    <div class="hero-container">
+        <div class="video-bg"></div>
+        <div class="hero-content">
+            <h1>確かな技術、未来を紡ぐ<br><span class="gold-text">永沢製作所</span></h1>
+            <p class="lead">群馬から世界へ届ける、精密なものづくりのテクノロジー</p>
+        </div>
+    </div>
+
+    <!-- 会社概要セクション -->
+    <section class="section">
+        <h2>私たちの強み</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>精密製造テクノロジー</h3>
+                <p>長年培った確かな技術と最新鋭の設備により、寸分の狂いもない高精度な部品製造を実現します。</p>
+            </div>
+            <div class="card">
+                <h3>一貫した生産体制</h3>
+                <p>設計から加工、組み立て、検査にいたるまで、社内で一貫して行うことで、迅速かつ柔軟に対応いたします。</p>
+            </div>
+            <div class="card">
+                <h3>徹底した品質管理</h3>
+                <p>お客様に安心と信頼をお届けするため、厳格な検査基準を設け、最高品質の製品だけを出荷しています。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <p>&copy; 2026 NAGASAWA SEISAKUSHO All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
