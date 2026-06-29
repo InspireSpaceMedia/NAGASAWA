@@ -19,13 +19,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ─── 最初の1画面（ファーストビュー）を動画とタイトルで美しく分離 ─── */
-        
-        /* 上側：動画エリア（縦幅を画面の60%に抑えて、被りを物理的にゼロに） */
+        /* ─── 完璧なフルスクリーン動画エリア（文字の被り絶対ゼロ） ─── */
         .hero-container {
             position: relative;
             width: 100%;
-            height: 60vh; 
+            height: 100vh; /* 画面の縦幅ぴったり100% */
             overflow: hidden;
             background-color: #000000;
         }
@@ -40,39 +38,34 @@
             pointer-events: none;
         }
 
+        /* どんな画面サイズでも動画が上下左右ぴったりフルスクリーンになる魔法の記述 */
         .video-bg-wrapper iframe {
             position: absolute;
             top: 50%;
             left: 50%;
             width: 100vw;
             height: 56.25vw; /* 16:9 比率 */
-            min-height: 60vh; 
-            min-width: 106.66vh; 
+            min-height: 100vh; 
+            min-width: 177.77vh; 
             transform: translate(-50%, -50%);
         }
 
-        /* 下側：タイトルエリア（最初の1画面に必ず収まり、動画と絶対に被らない） */
+        /* ─── スクロールした後に現れるオシャレなタイトルエリア ─── */
         .hero-text-area {
             background-color: #0d1b2a; /* プレミアムネイビー */
             color: #ffffff;
-            height: 40vh; /* 画面の下40%を贅沢に使用 */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            padding: 100px 20px;
             text-align: center;
             position: relative;
             z-index: 2;
-            box-sizing: border-box;
-            padding: 20px;
             border-bottom: 4px solid #e0a96d; /* 上品なゴールドライン */
         }
 
         .hero-text-area h1 {
-            font-size: 2.2rem;
+            font-size: 2.6rem;
             font-weight: 700;
-            letter-spacing: 0.12em;
-            margin: 0 0 12px 0;
+            letter-spacing: 0.15em;
+            margin: 0 0 15px 0;
             color: #ffffff;
             line-height: 1.4;
         }
@@ -80,12 +73,12 @@
         .gold-text {
             color: #e0a96d; /* シアーゴールド */
             display: block;
-            margin-top: 8px;
-            font-size: 2.6rem;
+            margin-top: 12px;
+            font-size: 3rem;
         }
 
         .hero-text-area p.lead {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             color: #a5a9b4;
             letter-spacing: 0.08em;
             margin: 0;
@@ -94,7 +87,7 @@
 
         /* ─── コンテンツセクション共通 ─── */
         .section {
-            padding: 90px 20px;
+            padding: 100px 20px;
             max-width: 1100px;
             margin: 0 auto;
             width: 100%;
@@ -102,7 +95,7 @@
         }
 
         h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-align: center;
@@ -128,29 +121,29 @@
             color: #666666;
             line-height: 1.8;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         /* ─── 代表挨拶セクション ─── */
         .greeting-box {
             background-color: #f8f9fa;
-            padding: 45px;
+            padding: 50px;
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.02);
             border-top: 4px solid #0d1b2a;
         }
 
         .greeting-box h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: #0d1b2a;
             margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             line-height: 1.6;
             font-weight: 700;
         }
 
         .greeting-box p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: #4a515c;
             line-height: 1.9;
             margin: 0;
@@ -160,8 +153,8 @@
         .signature {
             text-align: right;
             font-weight: 700;
-            font-size: 1.15rem;
-            margin-top: 30px;
+            font-size: 1.2rem;
+            margin-top: 35px;
             color: #0d1b2a;
         }
 
@@ -169,20 +162,20 @@
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 35px;
+            gap: 40px;
         }
 
         .card {
             background-color: #ffffff;
             border: 1px solid #eef0f3;
-            padding: 35px;
+            padding: 40px 35px;
             border-radius: 6px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
             transition: all 0.4s ease;
         }
 
         .card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
             border-color: #e0a96d;
             box-shadow: 0 15px 40px rgba(224, 169, 109, 0.15);
         }
@@ -190,15 +183,15 @@
         .card h3 {
             color: #0d1b2a;
             margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.25rem;
+            margin-bottom: 18px;
+            font-size: 1.3rem;
             font-weight: 700;
         }
 
         .card p {
             color: #5a616c;
-            font-size: 0.95rem;
-            line-height: 1.7;
+            font-size: 0.98rem;
+            line-height: 1.75;
             margin: 0;
         }
 
@@ -208,15 +201,15 @@
             padding: 0;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 15px;
+            gap: 20px;
         }
 
         .facility-list li {
             background-color: #f8f9fa;
             border: 1px solid #eef0f3;
-            padding: 18px 22px;
+            padding: 20px 25px;
             border-radius: 4px;
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: #333333;
             display: flex;
             align-items: center;
@@ -245,10 +238,10 @@
         }
 
         .info-table th, .info-table td {
-            padding: 20px 25px;
+            padding: 22px 25px;
             text-align: left;
             border-bottom: 1px solid #eef0f3;
-            font-size: 1rem;
+            font-size: 1.05rem;
         }
 
         .info-table th {
@@ -270,25 +263,25 @@
         /* ─── フッター ─── */
         footer {
             text-align: center;
-            padding: 45px 20px;
+            padding: 50px 20px;
             border-top: 1px solid #eef0f3;
             background-color: #f8f9fa;
             color: #8c939e;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-top: auto;
         }
     </style>
 </head>
 <body>
 
-    <!-- ─── 上側：動画エリア（60%） ─── -->
+    <!-- ─── ページを開いた瞬間：動画だけの完全フルスクリーン（100vh） ─── -->
     <div class="hero-container">
         <div class="video-bg-wrapper">
             <iframe src="https://www.youtube.com/embed/HsDkBJ6cw24?autoplay=1&mute=1&loop=1&playlist=HsDkBJ6cw24&controls=0&disablekb=1&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&hl=ja&cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- ─── 下側：独立したタイトルエリア（40%） ─── -->
+    <!-- ─── スクロールすると登場する、極上のデザインエリア ─── -->
     <div class="hero-text-area">
         <h1>確かな技術、未来を紡ぐ<span class="gold-text">株式会社 永沢製作所</span></h1>
         <p class="lead">精密なものづくりのテクノロジーを、群馬から世界へ。</p>
@@ -318,7 +311,7 @@
             </div>
             <div class="card">
                 <h3>設計から組立までの<br>一貫生産体制</h3>
-                <p>図面設計から材料調達、部品加工、そして最終的な組み立て・調整・検査にいたるまで、社内で一貫して行うことで、短納期かつ柔軟なカスタマイズを可能にしています。</p>
+                <p>図面設計から材料調達、部品加工、工程、最終的な組み立て・調整・検査にいたるまで、社内で一貫して行うことで、短納期かつ柔軟なカスタマイズを可能にしています。</p>
             </div>
             <div class="card">
                 <h3>徹底した<br>品質管理体制</h3>
