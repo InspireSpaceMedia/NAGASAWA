@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>有限会社 永沢製作所</title>
+    <title>株式会社 永沢製作所</title>
     <style>
         /* 全体のスタイル */
         body {
             margin: 0;
             padding: 0;
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            background-color: #0a1128; /* 深いネイビー */
-            color: #ffffff;
+            background-color: #ffffff; /* コンテンツエリアの背景は白 */
+            color: #333333;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* 背景動画エリア（メインビジュアル） */
+        /* ─── 背景動画エリア（メインビジュアル） ─── */
         .hero-container {
             position: relative;
             width: 100%;
-            height: 100vh;
+            height: 75vh; 
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            background-color: #000000;
         }
 
-        /* YouTube動画を画面いっぱいに広げて背景にするスタイル */
+        /* YouTube動画を画面いっぱいに広げて背景にするスタイル（フィルターなし） */
         .video-bg-wrapper {
             position: absolute;
             top: 0;
@@ -44,35 +44,27 @@
             left: 50%;
             width: 100vw;
             height: 56.25vw; /* 16:9 の比率 */
-            min-height: 100vh;
-            min-width: 177.77vh; /* 16:9 の比率 */
+            min-height: 75vh; 
+            min-width: 133.33vh; 
             transform: translate(-50%, -50%);
         }
 
-        /* 動画の上に重ねる黒い透過マスク（文字を読みやすくするため） */
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(10, 17, 40, 0.4), rgba(10, 17, 40, 0.6));
-            z-index: 2;
-        }
-
-        .hero-content {
+        /* ─── 動画下のテキストエリア（被らない配置・影なし） ─── */
+        .hero-text-area {
+            background-color: #0a1128; /* 深いネイビーの背景 */
+            color: #ffffff;
+            padding: 50px 20px;
+            text-align: center;
             position: relative;
-            z-index: 3;
-            padding: 0 20px;
+            z-index: 2; 
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             letter-spacing: 0.1em;
-            margin-bottom: 20px;
+            margin: 0 0 15px 0;
             color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
         }
 
         .gold-text {
@@ -80,13 +72,12 @@
         }
 
         p.lead {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #e0e0e0;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+            margin: 0;
         }
 
-        /* コンテンツセクション共通 */
+        /* ─── コンテンツセクション共通 ─── */
         .section {
             padding: 80px 20px;
             max-width: 1000px;
@@ -97,10 +88,49 @@
             font-size: 2rem;
             border-left: 4px solid #d4af37;
             padding-left: 15px;
-            margin-bottom: 40px;
-            color: #d4af37;
+            margin-bottom: 30px;
+            color: #0a1128;
         }
 
+        .section-desc {
+            font-size: 1.05rem;
+            color: #666666;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        /* 代表挨拶のスタイル */
+        .greeting-box {
+            background-color: #f4f7f6;
+            padding: 40px;
+            border-radius: 6px;
+            border-left: 5px solid #0a1128;
+        }
+
+        .greeting-box h3 {
+            font-size: 1.4rem;
+            color: #0a1128;
+            margin-top: 0;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .greeting-box p {
+            font-size: 1rem;
+            color: #444444;
+            line-height: 1.8;
+            white-space: pre-line; /* 改行を有効にする */
+        }
+
+        .signature {
+            text-align: right;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 25px;
+            color: #0a1128;
+        }
+
+        /* カードグリッド */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -108,9 +138,9 @@
         }
 
         .card {
-            background-color: #111a36;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 30px;
+            background-color: #f4f7f6; 
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 35px;
             border-radius: 4px;
             transition: transform 0.3s, border-color 0.3s;
         }
@@ -118,12 +148,49 @@
         .card:hover {
             transform: translateY(-5px);
             border-color: #d4af37;
+            background-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .card h3 {
-            color: #ffffff;
+            color: #0a1128;
             margin-top: 0;
             margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            color: #555555;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* 設備リストのスタイル */
+        .facility-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .facility-list li {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 1rem;
+            color: #333333;
+            display: flex;
+            align-items: center;
+        }
+
+        .facility-list li::before {
+            content: "■";
+            color: #d4af37;
+            font-size: 0.8rem;
+            margin-right: 12px;
         }
 
         /* 会社概要テーブルのスタイル */
@@ -131,27 +198,28 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background-color: #111a36;
+            background-color: #ffffff;
             border-radius: 4px;
             overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
         }
 
         .info-table th, .info-table td {
             padding: 20px;
             text-align: left;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .info-table th {
             width: 25%;
-            background-color: rgba(212, 175, 55, 0.05);
-            color: #d4af37;
+            background-color: #f4f7f6;
+            color: #0a1128;
             font-weight: 600;
         }
 
         .info-table td {
-            color: #e0e0e0;
+            color: #333333;
             line-height: 1.6;
         }
 
@@ -159,57 +227,102 @@
             border-bottom: none;
         }
 
-        /* フッター */
+        /* ─── フッター ─── */
         footer {
             text-align: center;
             padding: 40px 20px;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            background-color: #f4f7f6;
             color: #888888;
             font-size: 0.9rem;
+            margin-top: auto;
         }
     </style>
 </head>
 <body>
 
-    <!-- メインビジュアル（背景動画エリア） -->
+    <!-- ─── メインビジュアル（背景動画エリア・フィルターなし） ─── -->
     <div class="hero-container">
         <div class="video-bg-wrapper">
             <iframe src="https://www.youtube.com/embed/HsDkBJ6cw24?autoplay=1&mute=1&loop=1&playlist=HsDkBJ6cw24&controls=0&disablekb=1&rel=0&modestbranding=1&playsinline=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <div class="video-overlay"></div>
-        
-        <div class="hero-content">
-            <h1>確かな技術、未来を紡ぐ<br><span class="gold-text">有限会社 永沢製作所</span></h1>
-            <p class="lead">群馬から世界へ届ける、精密なものづくりのテクノロジー</p>
-        </div>
     </div>
 
-    <!-- 強みセクション -->
+    <!-- ─── 動画下のテキストエリア ─── -->
+    <div class="hero-text-area">
+        <h1>確かな技術、未来を紡ぐ<br><span class="gold-text">株式会社 永沢製作所</span></h1>
+        <p class="lead">精密なものづくりのテクノロジーを、群馬から世界へ。</p>
+    </div>
+
+    <!-- ─── 代表挨拶セクション ─── -->
+    <section class="section">
+        <h2>代表挨拶</h2>
+        <div class="greeting-box">
+            <h3>ものづくりへの情熱と、進化し続ける技術力で社会に貢献する</h3>
+            <p>当社は昭和63年の設立以来、金属工作機械や省力機械器具の設計製造、形成各種機械部品の精密加工・組立に一貫して取り組んでまいりました。
+            時代の変化とともに製造業に求められる精度やスピードは高度化していますが、私たちは「職人の確かな目と技」、そして「最新鋭の設備」を融合させることで、常に最高品質の製品を追求し続けています。
+
+            地域に根ざし、日本の、そして世界のモノづくりを支えるパートナーとして、これからも信頼される企業であり続けるよう、社員一丸となって技術の研鑽に励んでまいります。</p>
+            <div class="signature">代表取締役 長澤 広通</div>
+        </div>
+    </section>
+
+    <!-- ─── 私たちの強みセクション ─── -->
     <section class="section">
         <h2>私たちの強み</h2>
+        <p class="section-desc">熟練の技術と最新のテクノロジーを融合させ、お客様の多様なニーズに応える高精度な部品加工・機械製造をお届けします。</p>
         <div class="grid">
             <div class="card">
-                <h3>精密製造テクノロジー</h3>
-                <p>長年培った確かな技術と最新鋭の設備により、寸分の狂いもない高精度な部品製造を実現します。</p>
+                <h3>高精度を保証する精密製造テクノロジー</h3>
+                <p>長年培った確かなノウハウと最新鋭の工作機械により、ミクロン単位の寸分の狂いもない高精度加工を実現します。</p>
             </div>
             <div class="card">
-                <h3>一貫した生産体制</h3>
-                <p>設計から加工、組み立て、検査にいたるまで、社内で一貫して行うことで、迅速かつ柔軟に対応いたします。</p>
+                <h3>設計から組立までの一貫生産体制</h3>
+                <p>図面設計から材料調達、部品加工、そして最終的な組み立て・調整・検査にいたるまで、社内で一貫して行うことで、短納期かつ柔軟なカスタマイズを可能にしています。</p>
             </div>
             <div class="card">
-                <h3>徹底した品質管理</h3>
-                <p>お客様に安心と信頼をお届けするため、厳格な検査基準を設け、最高品質の製品だけを出荷しています。</p>
+                <h3>徹底した品質管理体制</h3>
+                <p>お客様に安心と高い信頼をお届けするため、三次元測定機をはじめとする厳格な検査基準を設け、最高品質を満たした製品だけを出荷しています。</p>
             </div>
         </div>
     </section>
 
-    <!-- 会社概要セクション -->
+    <!-- ─── 事業内容セクション ─── -->
+    <section class="section">
+        <h2>事業内容</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>金属工作機械・省力機械器具の設計製造</h3>
+                <p>お客様の工場や生産ラインに合わせた、最適な専用工作機械や、生産効率を向上させるための省力化・自動化機械器具の設計から製作までをトータルでサポートいたします。</p>
+            </div>
+            <div class="card">
+                <h3>各種機械部品の精密加工・組立</h3>
+                <p>マシニングセンタやCNC旋盤などの最新設備を駆使し、各種金属・難削材の高精度な部品加工を行います。単品の試作から中ロット生産、さらにはパーツの組み立て（アセンブリ）まで柔軟に対応可能です。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── 主要設備セクション ─── -->
+    <section class="section">
+        <h2>主要設備一覧</h2>
+        <ul class="facility-list">
+            <li>同時5軸制御マシニングセンタ</li>
+            <li>立形マシニングセンタ</li>
+            <li>臥形マシニングセンタ</li>
+            <li>CNC旋盤 / 複合加工機</li>
+            <li>高精度平面研削盤</li>
+            <li>三次元座標測定機</li>
+            <li>各種 CAD/CAM システム（設計・プログラミング用）</li>
+        </ul>
+    </section>
+
+    <!-- ─── 会社概要セクション ─── -->
     <section class="section">
         <h2>会社概要</h2>
         <table class="info-table">
             <tr>
                 <th>会社名</th>
-                <td>有限会社 永沢製作所</td>
+                <td>株式会社 永沢製作所</td>
             </tr>
             <tr>
                 <th>所在地</th>
@@ -233,12 +346,15 @@
             </tr>
             <tr>
                 <th>事業内容</th>
-                <td>・金属工作機械、省力機械器具の設計製造<br>・各種機械部品精密加工、組立</td>
+                <td>
+                    ・金属工作機械、省力機械器具の設計製造<br>
+                    ・各種機械部品精密加工、組立
+                </td>
             </tr>
         </table>
     </section>
 
-    <!-- フッター -->
+    <!-- ─── フッター ─── -->
     <footer>
         <p>&copy; 2026 NAGASAWA SEISAKUSHO All Rights Reserved.</p>
     </footer>
